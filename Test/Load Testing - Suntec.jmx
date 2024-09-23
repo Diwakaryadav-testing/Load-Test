@@ -1,0 +1,578 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.6.2">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Test Plan" enabled="true">
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.tearDown_on_shutdown">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+    </TestPlan>
+    <hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Load Testing - Suntec" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <stringProp name="LoopController.loops">1</stringProp>
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">5</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">150</stringProp>
+        <boolProp name="ThreadGroup.delayedStart">false</boolProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+      </ThreadGroup>
+      <hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="A - Home Listing" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">e44unf56e5.execute-api.us-east-1.amazonaws.com</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/Dev/v1/home</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.BROWSER_COMPATIBLE_MULTIPART">false</boolProp>
+          <boolProp name="HTTPSampler.image_parser">false</boolProp>
+          <boolProp name="HTTPSampler.concurrentDwn">false</boolProp>
+          <stringProp name="HTTPSampler.concurrentPool">6</stringProp>
+          <boolProp name="HTTPSampler.md5">false</boolProp>
+          <intProp name="HTTPSampler.ipSourceType">0</intProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="implementation-id" elementType="Header">
+                <stringProp name="Header.name">implementation-id</stringProp>
+                <stringProp name="Header.value">sg-suntec-city</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="B - Sign In Request" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+          &quot;email&quot;: &quot;nbeppeexoderm@vtqreplaced.com&quot;,&#xd;
+          &quot;password&quot;: &quot;Test@123&quot;         &#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">e44unf56e5.execute-api.us-east-1.amazonaws.com</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/Dev/sign-in</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.BROWSER_COMPATIBLE_MULTIPART">false</boolProp>
+          <boolProp name="HTTPSampler.image_parser">false</boolProp>
+          <boolProp name="HTTPSampler.concurrentDwn">false</boolProp>
+          <stringProp name="HTTPSampler.concurrentPool">6</stringProp>
+          <boolProp name="HTTPSampler.md5">false</boolProp>
+          <intProp name="HTTPSampler.ipSourceType">0</intProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">implementation-id</stringProp>
+                <stringProp name="Header.value">sg-suntec-city</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="IdToken" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">idToken</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">data.IdToken</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers">0</stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="C - Utilization" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">e44unf56e5.execute-api.us-east-1.amazonaws.com</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/Dev/vouchers/user?type=unutilized</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.BROWSER_COMPATIBLE_MULTIPART">false</boolProp>
+          <boolProp name="HTTPSampler.image_parser">false</boolProp>
+          <boolProp name="HTTPSampler.concurrentDwn">false</boolProp>
+          <stringProp name="HTTPSampler.concurrentPool">6</stringProp>
+          <boolProp name="HTTPSampler.md5">false</boolProp>
+          <intProp name="HTTPSampler.ipSourceType">0</intProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="implementation-id" elementType="Header">
+                <stringProp name="Header.name">implementation-id</stringProp>
+                <stringProp name="Header.value">sg-suntec-city</stringProp>
+              </elementProp>
+              <elementProp name="Authorization" elementType="Header">
+                <stringProp name="Header.name">Authorization</stringProp>
+                <stringProp name="Header.value">Bearer ${idToken}</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="D - Ewallet Car-Park-dollar " enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">e44unf56e5.execute-api.us-east-1.amazonaws.com</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/Dev/car-park-dollar</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.BROWSER_COMPATIBLE_MULTIPART">false</boolProp>
+          <boolProp name="HTTPSampler.image_parser">false</boolProp>
+          <boolProp name="HTTPSampler.concurrentDwn">false</boolProp>
+          <stringProp name="HTTPSampler.concurrentPool">6</stringProp>
+          <boolProp name="HTTPSampler.md5">false</boolProp>
+          <intProp name="HTTPSampler.ipSourceType">0</intProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="implementation-id" elementType="Header">
+                <stringProp name="Header.name">implementation-id</stringProp>
+                <stringProp name="Header.value">sg-suntec-city</stringProp>
+              </elementProp>
+              <elementProp name="Authorization" elementType="Header">
+                <stringProp name="Header.name">Authorization</stringProp>
+                <stringProp name="Header.value">Bearer ${idToken}</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="E - Purchase Rewards" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&#xd;
+{&#xd;
+	&quot;issuedTime&quot;: &quot;9:04 PM 31 Dec 2023&quot;,&#xd;
+    &quot;rewardId&quot;: 96447&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">e44unf56e5.execute-api.us-east-1.amazonaws.com</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/Dev/rewards/purchase</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.BROWSER_COMPATIBLE_MULTIPART">false</boolProp>
+          <boolProp name="HTTPSampler.image_parser">false</boolProp>
+          <boolProp name="HTTPSampler.concurrentDwn">false</boolProp>
+          <stringProp name="HTTPSampler.concurrentPool">6</stringProp>
+          <boolProp name="HTTPSampler.md5">false</boolProp>
+          <intProp name="HTTPSampler.ipSourceType">0</intProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="implementation-id" elementType="Header">
+                <stringProp name="Header.name">implementation-id</stringProp>
+                <stringProp name="Header.value">sg-suntec-city</stringProp>
+              </elementProp>
+              <elementProp name="Authorization" elementType="Header">
+                <stringProp name="Header.name">Authorization</stringProp>
+                <stringProp name="Header.value">Bearer ${idToken}</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="F -  Flash Sale" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+    &quot;cartOf&quot;: &quot;flash-sale&quot;,&#xd;
+    &quot;cart&quot;: [&#xd;
+        {&#xd;
+            &quot;FlashSalesID&quot;: 13199,&#xd;
+            &quot;FlashSaleCode&quot;: 13199,&#xd;
+            &quot;OfferText&quot;: &quot;[Kopi &amp; Tarts] $0.80 Regular Large Puff with Regular XXL Drink Set&quot;,&#xd;
+            &quot;Status&quot;: &quot;134 Left&quot;,&#xd;
+            &quot;IsFastSelling&quot;: false,&#xd;
+            &quot;ProductName&quot;: &quot;[Kopi &amp; Tarts] $0.80 Regular Large Puff with Regular XXL Drink Set&quot;,&#xd;
+            &quot;ProductImage&quot;: &quot;https://s3-ap-southeast-1.amazonaws.com/fs.capillary.sg/intouch_creative_assets/22137307-49cf-4497-8b16-579b2d82.png&quot;,&#xd;
+            &quot;MerchantName&quot;: &quot;BIG BUS and  DUCK&quot;,&#xd;
+            &quot;TowerNumber&quot;: &quot;Tower 1&quot;,&#xd;
+            &quot;UnitNumber&quot;: &quot;42&quot;,&#xd;
+            &quot;MerchantOpeningHours&quot;: &quot;&quot;,&#xd;
+            &quot;FullDescription&quot;: &quot;[National Day Special] Get a Regular Large Puff with Regular XXL Drink Set from Kopi &amp; Tarts at $0.80 (U.P. $1.00)\n- Available for redemption till 10 Oct 2023.\n- Customers may select from any regular Large Puff ($0.20 range) and regular XXL Drink ($0.80 range)\n- Top-up $0.10 for Premium Large Puff and $0.50 for Premium XXL Drink&quot;,&#xd;
+            &quot;Note&quot;: &quot;&quot;,&#xd;
+            &quot;MerchantID&quot;: 300064227,&#xd;
+            &quot;BenefitType&quot;: &quot;1&quot;,&#xd;
+            &quot;AvailableQty&quot;: 134,&#xd;
+            &quot;TotalQTY&quot;: 150,&#xd;
+            &quot;SoldQty&quot;: 16,&#xd;
+            &quot;Price&quot;: 4,&#xd;
+            &quot;FormatedPrice&quot;: 2,&#xd;
+            &quot;CurrencySymbol&quot;: &quot;$&quot;,&#xd;
+            &quot;IsClaimed&quot;: &quot;0&quot;,&#xd;
+            &quot;RedemptionDuration&quot;: &quot;0&quot;,&#xd;
+            &quot;PurchaseDateTime&quot;: &quot;&quot;,&#xd;
+            &quot;SalesStartDate&quot;: &quot;1970-01-01T05:30:00+05:30&quot;,&#xd;
+            &quot;SalesExpiryDate&quot;: &quot;2023-11-10T00:00:00+05:30&quot;,&#xd;
+            &quot;ActiveAfter&quot;: &quot;0&quot;,&#xd;
+            &quot;ActivationDateTime&quot;: &quot;2023-05-22 04:02:00&quot;,&#xd;
+            &quot;ActivatedOrNot&quot;: &quot;1&quot;,&#xd;
+            &quot;TOC&quot;: [&#xd;
+                &quot;Present e-Voucher at Suntec City outlet for redemption. &quot;,&#xd;
+                &quot;Limited to 1 e-Voucher redemption per member, per service.&quot;,&#xd;
+                &quot;e-Voucher is non-refundable and not exchangeable for cash. Unutilized amount will be forfeited.&quot;,&#xd;
+                &quot;Not valid with other promotions, discounts, packages or membership privileges.&quot;,&#xd;
+                &quot;This order is not eligible for Suntec+ points accumulation.&quot;,&#xd;
+                &quot;The management reserves the right to modify the terms of e-Voucher without prior notice.&quot;&#xd;
+            ],&#xd;
+            &quot;IsReservationRequired&quot;: &quot;0&quot;,&#xd;
+            &quot;isReserved&quot;: &quot;0&quot;,&#xd;
+            &quot;TransactionCode&quot;: &quot;&quot;,&#xd;
+            &quot;RemainingTime&quot;: &quot;0&quot;,&#xd;
+            &quot;EventSession&quot;: [],&#xd;
+            &quot;Images&quot;: [&#xd;
+                &quot;https://s3-ap-southeast-1.amazonaws.com/fs.capillary.sg/intouch_creative_assets/22137307-49cf-4497-8b16-579b2d82.png&quot;,&#xd;
+                &quot;&quot;,&#xd;
+                &quot;&quot;&#xd;
+            ],&#xd;
+            &quot;Location&quot;: &quot;Suntec City Mall , Tower 1&quot;,&#xd;
+            &quot;quantity&quot;: 1&#xd;
+        }&#xd;
+    ],&#xd;
+    &quot;amount&quot;: 4&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">hku0khoxf2.execute-api.us-east-1.amazonaws.com</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/Qa/payment-gateway/initiate</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.BROWSER_COMPATIBLE_MULTIPART">false</boolProp>
+          <boolProp name="HTTPSampler.image_parser">false</boolProp>
+          <boolProp name="HTTPSampler.concurrentDwn">false</boolProp>
+          <stringProp name="HTTPSampler.concurrentPool">6</stringProp>
+          <boolProp name="HTTPSampler.md5">false</boolProp>
+          <intProp name="HTTPSampler.ipSourceType">0</intProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="implementation-id" elementType="Header">
+                <stringProp name="Header.name">implementation-id</stringProp>
+                <stringProp name="Header.value">sg-suntec-city</stringProp>
+              </elementProp>
+              <elementProp name="Authorization" elementType="Header">
+                <stringProp name="Header.name">Authorization</stringProp>
+                <stringProp name="Header.value">Bearer ${idToken}</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor" enabled="true">
+            <stringProp name="cacheKey">true</stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="script">import groovy.json.*;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.JavascriptExecutor;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+def response=prev.getResponseDataAsString();
+def json =new JsonSlurper().parseText(response)
+
+log.info(json.toString());
+log.info(json.url);
+
+import org.openqa.selenium.WebDriver
+import org.openqa.selenium.chrome.ChromeDriver
+
+// Set the path to the ChromeDriver executable
+System.setProperty(&quot;webdriver.chrome.driver&quot;, &quot;C:\\chromedriver_win32\\chromedriver.exe&quot;)
+
+// Create a new instance of the ChromeDriver
+WebDriver driver = new ChromeDriver()
+
+// Navigate to a website
+driver.get(json.url)
+//
+//driver.findElement(By.cssSelector(&quot;#cardnumber&quot;)).click();
+//driver.findElement(By.cssSelector(&quot;#popup1 &gt; div.popupbody &gt; table &gt; tbody &gt; tr:nth-child(2) &gt; td:nth-child(2) &gt; img&quot;)).click();
+//driver.findElement(By.cssSelector(&quot;#mobile&quot;)).sendKeys(&quot;7896345321&quot;);
+//driver.findElement(By.xpath(&quot;(//input[@id=&apos;country_opt&apos;])[1]&quot;)).click();
+//driver.findElement(By.cssSelector(&quot;#bank_name&quot;)).sendKeys(&quot;svb&quot;);
+//driver.findElement(By.cssSelector(&quot;#terms&quot;)).click();
+//driver.findElement(By.cssSelector(&quot;#pay&quot;)).click();
+
+
+
+WebElement checkbox=driver.findElement(By.cssSelector(&quot;#radio_5910f4ea0062a0e2&quot;));
+ if (!checkbox.isSelected()) {
+            checkbox.click();
+        }
+
+driver.findElement(By.cssSelector(&quot;#cvv_5910f4ea0062a0e2&quot;)).sendKeys(&quot;111&quot;);
+WebElement dropdown=driver.findElement(By.cssSelector(&quot;#country&quot;));
+Select sel=new Select(dropdown);
+sel.selectByValue(&quot;AF&quot;);
+driver.findElement(By.cssSelector(&quot;#terms&quot;)).click();
+driver.findElement(By.xpath(&quot;//input[@id=&apos;paynow&apos;]&quot;)).click();
+
+Thread.sleep(2000);
+
+driver.findElement(By.xpath(&quot;//button[text()=&apos;Request OTP&apos;]&quot;)).click();
+ WebElement text = driver.findElement(By.xpath(&quot;//*[contains(text(), &apos;OTP/TAC: &apos;)]&quot;));
+ String value=text.getText();
+
+ log.info(value);
+
+String otpNumber = extractOTPNumber(value);
+
+   private static String extractOTPNumber(String text) {
+        String pattern = &quot;OTP/TAC: (\\d+)&quot;;
+        Pattern r = Pattern.compile(pattern);
+        Matcher m = r.matcher(text);
+        if (m.find()) {
+            return m.group(1);
+        }
+        return null; // Handle if no match is found
+    }
+ 
+log.info(otpNumber);
+
+driver.findElement(By.xpath(&quot;//input[@name=&apos;otp-input&apos;]&quot;)).sendKeys(otpNumber);
+ 
+driver.findElement(By.xpath(&quot;//button[text()=&apos;Pay Now&apos;]&quot;)).click();
+Thread.sleep(2000);
+String currentUrl = driver.getCurrentUrl();
+log.info(currentUrl);
+Thread.sleep(4000);
+
+String orderidurl = driver.getCurrentUrl();
+log.info(orderidurl);
+
+ Pattern pattern = Pattern.compile(&quot;orderid=([a-f0-9\\-]+)&quot;);
+        Matcher matcher = pattern.matcher(orderidurl);
+String orderID=null;
+        // Check if the pattern is found in the URL
+        if (matcher.find()) {
+            // Extract the orderid value
+             orderID = matcher.group(1);
+
+           log.info(orderID);
+        } else {
+           // System.out.println(&quot;Order ID not found in the URL.&quot;);
+           log.info(&quot;Not Found&quot;);
+        }
+    
+vars.put(&quot;stringValue&quot;, orderID)
+
+
+
+// Close the browser
+driver.quit()
+
+
+
+
+</stringProp>
+            <stringProp name="scriptLanguage">groovy</stringProp>
+          </JSR223PostProcessor>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="G - Payment-Gateway-Issue" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+	&quot;orderId&quot;:&quot;${stringValue}&quot;&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">e44unf56e5.execute-api.us-east-1.amazonaws.com</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/Dev/payment-gateway/issue</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.BROWSER_COMPATIBLE_MULTIPART">false</boolProp>
+          <boolProp name="HTTPSampler.image_parser">false</boolProp>
+          <boolProp name="HTTPSampler.concurrentDwn">false</boolProp>
+          <stringProp name="HTTPSampler.concurrentPool">6</stringProp>
+          <boolProp name="HTTPSampler.md5">false</boolProp>
+          <intProp name="HTTPSampler.ipSourceType">0</intProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="implementation-id" elementType="Header">
+                <stringProp name="Header.name">implementation-id</stringProp>
+                <stringProp name="Header.value">sg-suntec-city</stringProp>
+              </elementProp>
+              <elementProp name="Authorization" elementType="Header">
+                <stringProp name="Header.name">Authorization</stringProp>
+                <stringProp name="Header.value">Bearer ${idToken}</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
+          <stringProp name="ConstantTimer.delay">300</stringProp>
+        </ConstantTimer>
+        <hashTree/>
+        <ResultCollector guiclass="AssertionVisualizer" testclass="ResultCollector" testname="Assertion Results" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+      <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+        <collectionProp name="Asserion.test_strings">
+          <stringProp name="49586">200</stringProp>
+        </collectionProp>
+        <stringProp name="Assertion.custom_message"></stringProp>
+        <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+        <boolProp name="Assertion.assume_success">false</boolProp>
+        <intProp name="Assertion.test_type">2</intProp>
+      </ResponseAssertion>
+      <hashTree/>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>
